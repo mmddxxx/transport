@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>member</artifactId>
+    <artifactId>common</artifactId>
 
-    <name>member</name>
+    <name>common</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -21,31 +21,30 @@
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
-    <!--    新依赖要重启，热部署没有用-->
     <dependencies>
-<!--        直接将common引入进来-->
         <dependency>
-            <groupId>com.cug</groupId>
-            <artifactId>common</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
         </dependency>
 
-        <!--        开发用-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.maven.plugins</groupId>-->
-        <!--            <artifactId>maven-project-info-reports-plugin</artifactId>-->
-        <!--            <version>3.0.0</version>-->
-        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,14 +85,10 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.7.1</version>
                 </plugin>
-                <!--                <plugin>-->
-                <!--                    <artifactId>maven-project-info-reports-plugin</artifactId>-->
-                <!--                    <version>3.0.0</version>-->
-                <!--                </plugin>-->
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <artifactId>maven-project-info-reports-plugin</artifactId>-->
+<!--                    <version>3.0.0</version>-->
+<!--                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>
