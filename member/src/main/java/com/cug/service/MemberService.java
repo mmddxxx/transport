@@ -3,6 +3,8 @@ package com.cug.service;
 import cn.hutool.core.collection.CollUtil;
 import com.cug.domain.Member;
 import com.cug.domain.MemberExample;
+import com.cug.exception.BusinessException;
+import com.cug.exception.BusinessExceptionEnum;
 import com.cug.mapper.MemberMapper;
 import com.cug.req.MemberRegisterReq;
 import jakarta.annotation.Resource;
@@ -27,7 +29,7 @@ public class MemberService {
         List<Member> list = memberMapper.selectByExample(memberExample);
         if (CollUtil.isNotEmpty(list)) {
 //            return list.get(0).getId();
-            throw new RuntimeException("手机号已注册");
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         Member member = new Member();
