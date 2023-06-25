@@ -1,6 +1,7 @@
 package com.cug.service;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
 import com.cug.domain.Member;
 import com.cug.domain.MemberExample;
 import com.cug.exception.BusinessException;
@@ -33,7 +34,8 @@ public class MemberService {
         }
 
         Member member = new Member();
-        member.setId(System.currentTimeMillis());
+//        member.setId(System.currentTimeMillis());
+        member.setId(IdUtil.getSnowflake(1, 1).nextId());
         member.setMobile(mobile);
 
         memberMapper.insert(member);
