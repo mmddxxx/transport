@@ -21,7 +21,7 @@ public class BusinessException extends RuntimeException {
      */
     @Override
     public Throwable fillInStackTrace() {
-        return this;
+        return this;  //只返回当前的类
     }
 
 }
