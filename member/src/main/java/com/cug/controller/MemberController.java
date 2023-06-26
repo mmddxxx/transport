@@ -1,6 +1,7 @@
 package com.cug.controller;
 
 import com.cug.req.MemberRegisterReq;
+import com.cug.req.MemberSendCodeReq;
 import com.cug.resp.CommonResp;
 import com.cug.service.MemberService;
 import jakarta.annotation.Resource;
@@ -27,5 +28,11 @@ public class MemberController {
     public CommonResp<Long> registerr(@Valid MemberRegisterReq req) {  //加上这个注解才能让valid生效
         long register = memberService.register(req);
         return new CommonResp<>(register);
+    }
+
+    @PostMapping("/sendCode")
+    public CommonResp<Long> sendCode(@Valid MemberSendCodeReq req) {  //加上这个注解才能让valid生效
+        memberService.sendCode(req);
+        return new CommonResp<>();
     }
 }

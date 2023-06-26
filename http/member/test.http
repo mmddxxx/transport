@@ -15,3 +15,10 @@ mobile=1
 
 ###
 
+POST http://localhost:8000/member/member/sendCode
+Content-Type: application/x-www-form-urlencoded
+
+mobile=11234567890
+
+###
+
