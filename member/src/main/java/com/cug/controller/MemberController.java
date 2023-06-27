@@ -8,10 +8,7 @@ import com.cug.resp.MemberLoginResp;
 import com.cug.service.MemberService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/member")
@@ -33,13 +30,13 @@ public class MemberController {
     }
 
     @PostMapping("/sendCode")
-    public CommonResp<?> sendCode(@Valid MemberSendCodeReq req) {  //加上这个注解才能让valid生效
+    public CommonResp<?> sendCode(@Valid  @RequestBody MemberSendCodeReq req) {  //加上这个注解才能让valid生效
         memberService.sendCode(req);
         return new CommonResp<>();
     }
 
     @PostMapping("/login")
-    public CommonResp<MemberLoginResp> login(@Valid MemberLoginReq req) {  //加上这个注解才能让valid生效
+    public CommonResp<MemberLoginResp> login(@Valid @RequestBody MemberLoginReq req) {  //加上这个注解才能让valid生效
         MemberLoginResp resp = memberService.login(req);
         return new CommonResp<>(resp);
     }

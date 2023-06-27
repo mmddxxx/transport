@@ -14,6 +14,7 @@ import com.cug.req.MemberLoginReq;
 import com.cug.req.MemberRegisterReq;
 import com.cug.req.MemberSendCodeReq;
 import com.cug.resp.MemberLoginResp;
+import com.cug.util.JwtUtil;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,7 +92,11 @@ public class MemberService {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
 
-        return BeanUtil.copyProperties(memberDB, MemberLoginResp.class);
+        MemberLoginResp resp = BeanUtil.copyProperties(memberDB, MemberLoginResp.class);
+
+        String token = JwtUtil.createToken(resp.getId(), resp.getMobile());
+        resp.setToken(token);
+        return resp;
 
     }
 

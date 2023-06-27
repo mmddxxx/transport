@@ -16,16 +16,22 @@ mobile=1
 ###
 
 POST http://localhost:8000/member/member/sendCode
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-mobile=1123456789
+{
+  "mobile":1123456789
+}
+
 
 ###
 
 POST http://localhost:8000/member/member/login
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-mobile=11234567890&code=8888
+{
+  "mobile":11234567890,
+  "code":8888
+}
 
 ###
 
