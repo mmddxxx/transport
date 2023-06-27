@@ -1,4 +1,4 @@
-package com.cug.util;
+package com.cug.gateway.util;
 
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
