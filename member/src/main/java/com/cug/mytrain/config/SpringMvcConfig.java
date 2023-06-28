@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SpringMvcConfig implements WebMvcConfigurer {
 
+    //开启日志流水号拦截器
     @Resource
     LogInterceptor logInterceptor;
 
