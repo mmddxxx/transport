@@ -24,7 +24,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public CommonResp<Long> registerr(@Valid MemberRegisterReq req) {  //加上这个注解才能让valid生效
+    public CommonResp<Long> register(@Valid MemberRegisterReq req) {  //加上这个注解才能让valid生效
         long register = memberService.register(req);
         return new CommonResp<>(register);
     }
