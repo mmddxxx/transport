@@ -1,9 +1,8 @@
 package com.cug.mytrain.req;
 
-//import com.cug.mytrain.req.PageReq;
+import com.cug.mytrain.req.PageReq;
 
-//public class PassengerQueryReq extends PageReq {
-public class PassengerQueryReq {
+public class PassengerQueryReq extends PageReq {
 
     private Long memberId;
 

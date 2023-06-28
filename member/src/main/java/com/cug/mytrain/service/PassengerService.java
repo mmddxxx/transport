@@ -42,7 +42,7 @@ public class PassengerService {
             criteria.andMemberIdEqualTo(req.getMemberId());
         }
         //只会对该句下面的第一条select语句起效
-        PageHelper.startPage(2, 1);
+        PageHelper.startPage(req.getPage(), req.getSize());
         List<Passenger> passengerList = passengerMapper.selectByExample(passengerExample);
         return BeanUtil.copyToList(passengerList, PassengerQueryResp.class);
     }
