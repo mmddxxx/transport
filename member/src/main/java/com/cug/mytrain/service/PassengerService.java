@@ -11,6 +11,7 @@ import com.cug.mytrain.req.PassengerQueryReq;
 import com.cug.mytrain.req.PassengerSaveReq;
 import com.cug.mytrain.resp.PassengerQueryResp;
 import com.cug.mytrain.util.SnowUtil;
+import com.github.pagehelper.PageHelper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,8 @@ public class PassengerService {
         if (ObjectUtil.isNull(req.getMemberId())) {
             criteria.andMemberIdEqualTo(req.getMemberId());
         }
+        //只会对该句下面的第一条select语句起效
+        PageHelper.startPage(2, 1);
         List<Passenger> passengerList = passengerMapper.selectByExample(passengerExample);
         return BeanUtil.copyToList(passengerList, PassengerQueryResp.class);
     }
