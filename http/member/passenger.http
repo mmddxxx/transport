@@ -1,5 +1,6 @@
-POST http://localhost:8001/member/passenger/save
+POST http://localhost:8000/member/passenger/save  #可以改成8001绕过gateway登录校验
 Content-Type: application/json
+token: {{token}}
 
 {
   "memberId": "12345678910",

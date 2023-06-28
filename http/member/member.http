@@ -28,10 +28,17 @@ Content-Type: application/json
 POST http://localhost:8000/member/member/login
 Content-Type: application/json
 
+#注意必须要空格，不然会被识别为请求头
 {
   "mobile":11234567890,
   "code":8888
 }
+
+> {%
+client.log(JSON.stringify(response.body));
+client.log(JSON.stringify(response.body.content.token));
+client.global.set("token", response.body.content.token);
+%}
 
 ###
 
