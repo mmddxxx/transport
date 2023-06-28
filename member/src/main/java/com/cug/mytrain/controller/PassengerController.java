@@ -4,13 +4,12 @@ import com.cug.mytrain.context.LoginMemberContext;
 import com.cug.mytrain.req.PassengerQueryReq;
 import com.cug.mytrain.req.PassengerSaveReq;
 import com.cug.mytrain.resp.CommonResp;
+import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.resp.PassengerQueryResp;
 import com.cug.mytrain.service.PassengerService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/passenger")
@@ -27,9 +26,9 @@ public class PassengerController {
 
     //查询使用get请求，入参直接拼接在url上
     @GetMapping("/queryList")
-    public CommonResp<List<PassengerQueryResp>> queryList(@Valid PassengerQueryReq req) {  //加上这个注解才能让valid生效
+    public CommonResp<PageResp<PassengerQueryResp>> queryList(@Valid PassengerQueryReq req) {  //加上这个注解才能让valid生效
         req.setMemberId(LoginMemberContext.getId());
-        List<PassengerQueryResp> passengerList = passengerService.queryList(req);
+        PageResp<PassengerQueryResp> passengerList = passengerService.queryList(req);
         return new CommonResp<>(passengerList);
     }
 
