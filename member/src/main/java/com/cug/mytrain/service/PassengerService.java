@@ -71,4 +71,8 @@ public class PassengerService {
         resp.setList(list);
         return resp;
     }
+
+    public void delete(Long id) {
+        passengerMapper.deleteByPrimaryKey(id);
+    }
 }

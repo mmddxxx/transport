@@ -25,12 +25,16 @@ public class PassengerController {
     }
 
     //查询使用get请求，入参直接拼接在url上
-    @GetMapping("/queryList")
+    @GetMapping("/query-list")
     public CommonResp<PageResp<PassengerQueryResp>> queryList(@Valid PassengerQueryReq req) {  //加上这个注解才能让valid生效
         req.setMemberId(LoginMemberContext.getId());
         PageResp<PassengerQueryResp> passengerList = passengerService.queryList(req);
         return new CommonResp<>(passengerList);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public CommonResp<?> delete(@PathVariable Long id) {  //加上这个注解才能让valid生效
+        passengerService.delete(id);
+        return new CommonResp<>();
+    }
 }

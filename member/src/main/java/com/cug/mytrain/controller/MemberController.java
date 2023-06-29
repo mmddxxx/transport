@@ -29,7 +29,7 @@ public class MemberController {
         return new CommonResp<>(register);
     }
 
-    @PostMapping("/sendCode")
+    @PostMapping("/send-code")  //中间加"-"是url规范
     public CommonResp<?> sendCode(@Valid  @RequestBody MemberSendCodeReq req) {  //加上这个注解才能让valid生效
         memberService.sendCode(req);
         return new CommonResp<>();

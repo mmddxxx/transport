@@ -1,10 +1,10 @@
 {
-  "name": "web",
+  "name": "admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "web-dev": "vue-cli-service serve --mode dev --port 9000",
-    "web-prod": "vue-cli-service serve --mode prod --port 9000",
+    "admin-dev": "vue-cli-service serve --mode dev --port 9001",
+    "admin-prod": "vue-cli-service serve --mode prod --port 9001",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },

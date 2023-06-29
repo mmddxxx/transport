@@ -1,38 +1,30 @@
-#GET http://localhost:8081/member/hello
-#Accept: application/json
-
-###
-
 GET http://localhost:8000/member/member/count
 Accept: application/json
+token: 123
 
 ###
-
 POST http://localhost:8000/member/member/register
 Content-Type: application/x-www-form-urlencoded
 
-mobile=1
+mobile=12345678
 
 ###
-
-POST http://localhost:8000/member/member/sendCode
+POST http://localhost:8000/member/member/send-code
 Content-Type: application/json
 
 {
-  "mobile":1123456789
+  "mobile": "13000000001"
 }
 
-
 ###
-
 POST http://localhost:8000/member/member/login
 Content-Type: application/json
 
-#注意必须要空格，不然会被识别为请求头
 {
-  "mobile":11234567890,
-  "code":8888
+  "mobile": "13000000001",
+  "code": "8888"
 }
+
 
 > {%
 client.log(JSON.stringify(response.body));
@@ -41,4 +33,3 @@ client.global.set("token", response.body.content.token);
 %}
 
 ###
-
