@@ -11,6 +11,7 @@ public class PassengerQueryResp {
     /**
      * id
      */
+    //将long转为string，以免前端long类型精度丢失
     @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 

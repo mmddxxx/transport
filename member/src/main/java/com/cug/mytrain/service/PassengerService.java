@@ -32,11 +32,17 @@ public class PassengerService {
     public void save(PassengerSaveReq passengerSaveReq) {
         DateTime now = DateTime.now();
         Passenger passenger = BeanUtil.copyProperties(passengerSaveReq, Passenger.class);
-        passenger.setMemberId(LoginMemberContext.getId());
-        passenger.setId(SnowUtil.getSnowflakeNextId());
-        passenger.setCreateTime(now);
-        passenger.setUpdateTime(now);
-        passengerMapper.insert(passenger);
+        if (ObjectUtil.isNull(passenger.getId())) {
+            passenger.setMemberId(LoginMemberContext.getId());
+            passenger.setId(SnowUtil.getSnowflakeNextId());
+            passenger.setCreateTime(now);
+            passenger.setUpdateTime(now);
+            passengerMapper.insert(passenger);
+        } else {
+            passenger.setUpdateTime(now);
+            passengerMapper.updateByPrimaryKey(passenger);  //通过主键进行更新
+        }
+
     }
 
     //这里不需要输入参数，但是为了方法通用，后面控台端也可以调用该方法获取所有会员
