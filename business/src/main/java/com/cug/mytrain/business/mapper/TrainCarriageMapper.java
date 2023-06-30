@@ -2,8 +2,12 @@ package com.cug.mytrain.business.mapper;
 
 import com.cug.mytrain.business.domain.TrainCarriage;
 import com.cug.mytrain.business.domain.TrainCarriageExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+@Mapper
 
 public interface TrainCarriageMapper {
     long countByExample(TrainCarriageExample example);

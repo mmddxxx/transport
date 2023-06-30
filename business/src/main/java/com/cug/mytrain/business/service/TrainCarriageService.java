@@ -3,16 +3,16 @@ package com.cug.mytrain.business.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.cug.mytrain.resp.PageResp;
-import com.cug.mytrain.util.SnowUtil;
 import com.cug.mytrain.business.domain.TrainCarriage;
 import com.cug.mytrain.business.domain.TrainCarriageExample;
 import com.cug.mytrain.business.mapper.TrainCarriageMapper;
 import com.cug.mytrain.business.req.TrainCarriageQueryReq;
 import com.cug.mytrain.business.req.TrainCarriageSaveReq;
 import com.cug.mytrain.business.resp.TrainCarriageQueryResp;
+import com.cug.mytrain.resp.PageResp;
+import com.cug.mytrain.util.SnowUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,5 +66,17 @@ public class TrainCarriageService {
 
     public void delete(Long id) {
         trainCarriageMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 通过火车车次查询车厢编号
+     * @param trainCode
+     */
+    public List<TrainCarriage> selectByTrainCode(String trainCode) {
+        TrainCarriageExample trainCarriageExample = new TrainCarriageExample();
+        trainCarriageExample.setOrderByClause("`index` asc");
+        TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode);
+        return trainCarriageMapper.selectByExample(trainCarriageExample);
     }
 }

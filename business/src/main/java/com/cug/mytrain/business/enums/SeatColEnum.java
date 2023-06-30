@@ -16,6 +16,9 @@ public enum SeatColEnum {
     EDZ_D("D", "D", "2"),
     EDZ_F("F", "F", "2");
 
+    /**
+     * 座位码
+     */
     private String code;
 
     private String desc;
@@ -56,7 +59,7 @@ public enum SeatColEnum {
     }
 
     /**
-     * 根据车箱的座位类型，筛选出所有的列，比如车箱类型是一等座，则筛选出columnList={ACDF}
+     * 根据车箱的座位类型，筛选出所有的列，比如车箱类型是一等座，则筛选出columnList={ACDF}，如果是二等座，则筛选出columnList={ABCDF}
      */
     public static List<SeatColEnum> getColsByType(String seatType) {
         List<SeatColEnum> colList = new ArrayList<>();
