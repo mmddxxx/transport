@@ -1,8 +1,11 @@
 package com.cug.mytrain.business.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
+import com.cug.mytrain.exception.BusinessException;
+import com.cug.mytrain.exception.BusinessExceptionEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.cug.mytrain.resp.PageResp;
@@ -32,6 +35,13 @@ public class StationService {
         DateTime now = DateTime.now();
         Station station = BeanUtil.copyProperties(req, Station.class);
         if (ObjectUtil.isNull(station.getId())) {
+
+            //保存之前，先校验唯一键是否存在
+            Station stationDB = getStationByName(req.getName());
+            if (ObjectUtil.isNotNull(stationDB)) {
+                throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
+            }
+
             station.setId(SnowUtil.getSnowflakeNextId());
             station.setCreateTime(now);
             station.setUpdateTime(now);
@@ -40,6 +50,16 @@ public class StationService {
             station.setUpdateTime(now);
             stationMapper.updateByPrimaryKey(station);
         }
+    }
+
+    private Station getStationByName(String name) {
+        StationExample stationExample = new StationExample();
+        stationExample.createCriteria().andNameEqualTo(name);
+        List<Station> list = stationMapper.selectByExample(stationExample);
+        if (CollUtil.isNotEmpty(list)) {
+            return list.get(0);
+        }
+        return null;
     }
 
     public PageResp<StationQueryResp> queryList(StationQueryReq req) {

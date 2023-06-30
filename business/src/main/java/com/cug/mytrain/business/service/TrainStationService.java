@@ -1,18 +1,21 @@
 package com.cug.mytrain.business.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.cug.mytrain.resp.PageResp;
-import com.cug.mytrain.util.SnowUtil;
 import com.cug.mytrain.business.domain.TrainStation;
 import com.cug.mytrain.business.domain.TrainStationExample;
 import com.cug.mytrain.business.mapper.TrainStationMapper;
 import com.cug.mytrain.business.req.TrainStationQueryReq;
 import com.cug.mytrain.business.req.TrainStationSaveReq;
 import com.cug.mytrain.business.resp.TrainStationQueryResp;
+import com.cug.mytrain.exception.BusinessException;
+import com.cug.mytrain.exception.BusinessExceptionEnum;
+import com.cug.mytrain.resp.PageResp;
+import com.cug.mytrain.util.SnowUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +35,18 @@ public class TrainStationService {
         DateTime now = DateTime.now();
         TrainStation trainStation = BeanUtil.copyProperties(req, TrainStation.class);
         if (ObjectUtil.isNull(trainStation.getId())) {
+
+            // 保存之前，先校验唯一键是否存在
+            TrainStation trainStationDB = getTrainStationByIndex(req.getTrainCode(), req.getIndex());
+            if (ObjectUtil.isNotEmpty(trainStationDB)) {
+                throw new BusinessException(BusinessExceptionEnum.BUSINESS_TRAIN_STATION_INDEX_UNIQUE_ERROR);
+            }
+            // 保存之前，先校验唯一键是否存在
+            trainStationDB = getTrainStationByName(req.getTrainCode(), req.getName());
+            if (ObjectUtil.isNotEmpty(trainStationDB)) {
+                throw new BusinessException(BusinessExceptionEnum.BUSINESS_TRAIN_STATION_NAME_UNIQUE_ERROR);
+            }
+
             trainStation.setId(SnowUtil.getSnowflakeNextId());
             trainStation.setCreateTime(now);
             trainStation.setUpdateTime(now);
@@ -42,6 +57,26 @@ public class TrainStationService {
         }
     }
 
+    private TrainStation getTrainStationByIndex(String trainCode, Integer index) {
+        TrainStationExample trainStationExample = new TrainStationExample();
+        trainStationExample.createCriteria().andTrainCodeEqualTo(trainCode).andIndexEqualTo(index);
+        List<TrainStation> list = trainStationMapper.selectByExample(trainStationExample);
+        if (CollUtil.isNotEmpty(list)) {
+            return list.get(0);
+        }
+        return null;
+    }
+
+    private TrainStation getTrainStationByName(String trainCode, String name) {
+        TrainStationExample trainStationExample = new TrainStationExample();
+        trainStationExample.createCriteria().andTrainCodeEqualTo(trainCode).andNameEqualTo(name);
+        List<TrainStation> list = trainStationMapper.selectByExample(trainStationExample);
+        if (CollUtil.isNotEmpty(list)) {
+            return list.get(0);
+        }
+        return null;
+    }
+    
     public PageResp<TrainStationQueryResp> queryList(TrainStationQueryReq req) {
         TrainStationExample trainStationExample = new TrainStationExample();
         trainStationExample.setOrderByClause("id desc");
