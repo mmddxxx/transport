@@ -1,8 +1,8 @@
 package com.cug.mytrain.${module}.controller.admin;
 
-import com.cug.mytrain.common.context.LoginMemberContext;
-import com.cug.mytrain.common.resp.CommonResp;
-import com.cug.mytrain.common.resp.PageResp;
+import com.cug.mytrain.context.LoginMemberContext;
+import com.cug.mytrain.resp.CommonResp;
+import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.${module}.req.${Domain}QueryReq;
 import com.cug.mytrain.${module}.req.${Domain}SaveReq;
 import com.cug.mytrain.${module}.resp.${Domain}QueryResp;
