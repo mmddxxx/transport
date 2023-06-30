@@ -1,19 +1,19 @@
-package com.jiawa.train.${module}.controller.admin;
+package com.cug.mytrain.${module}.controller;
 
-import com.jiawa.train.common.context.LoginMemberContext;
-import com.jiawa.train.common.resp.CommonResp;
-import com.jiawa.train.common.resp.PageResp;
-import com.jiawa.train.${module}.req.${Domain}QueryReq;
-import com.jiawa.train.${module}.req.${Domain}SaveReq;
-import com.jiawa.train.${module}.resp.${Domain}QueryResp;
-import com.jiawa.train.${module}.service.${Domain}Service;
+import com.cug.mytrain.context.LoginMemberContext;
+import com.cug.mytrain.resp.CommonResp;
+import com.cug.mytrain.resp.PageResp;
+import com.cug.mytrain.${module}.req.${Domain}QueryReq;
+import com.cug.mytrain.${module}.req.${Domain}SaveReq;
+import com.cug.mytrain.${module}.resp.${Domain}QueryResp;
+import com.cug.mytrain.${module}.service.${Domain}Service;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin/${do_main}")
-public class ${Domain}AdminController {
+@RequestMapping("/${do_main}")
+public class ${Domain}Controller {
 
     @Resource
     private ${Domain}Service ${domain}Service;

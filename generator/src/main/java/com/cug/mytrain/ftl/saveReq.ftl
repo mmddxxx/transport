@@ -1,7 +1,5 @@
-package com.jiawa.train.${module}.resp;
+package com.cug.mytrain.${module}.req;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 <#list typeSet as type>
 <#if type=='Date'>
 import java.util.Date;
@@ -12,7 +10,10 @@ import java.math.BigDecimal;
 </#if>
 </#list>
 
-public class ${Domain}QueryResp {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public class ${Domain}SaveReq {
 
     <#list fieldList as field>
     /**
@@ -27,8 +28,14 @@ public class ${Domain}QueryResp {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
         </#if>
     </#if>
-    <#if field.name=='id' || field.name?ends_with('_id')>
-    @JsonSerialize(using= ToStringSerializer.class)
+    <#if field.name!="id" && field.nameHump!="createdAt" && field.nameHump!="updatedAt">
+        <#if !field.nullAble>
+            <#if field.javaType=='String'>
+    @NotBlank(message = "【${field.nameCn}】不能为空")
+            <#else>
+    @NotNull(message = "【${field.nameCn}】不能为空")
+            </#if>
+        </#if>
     </#if>
     private ${field.javaType} ${field.nameHump};
 
