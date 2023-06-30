@@ -1,0 +1,10 @@
+2023-06-30 11:53:54.316 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
+2023-06-30 11:53:54.350 INFO  com.cug.mytrain.MemberApplicationTests            :51   [32m                  [0;39m Starting MemberApplicationTests using Java 17.0.4 with PID 25164 (started by YZX in C:\Users\YZX\Desktop\¼òÀú\´ó³§ÏîÄ¿\mytrain\member)
+2023-06-30 11:53:54.352 INFO  com.cug.mytrain.MemberApplicationTests            :633  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2023-06-30 11:53:55.641 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=2002f0ee-0a28-39c0-8170-35696b9ee8cc
+2023-06-30 11:53:57.356 INFO  com.cug.mytrain.MemberApplicationTests            :57   [32m                  [0;39m Started MemberApplicationTests in 3.574 seconds (process running for 4.797)
+2023-06-30 11:54:32.727 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
+2023-06-30 11:54:32.769 INFO  com.cug.mytrain.MemberApplicationTests            :51   [32m                  [0;39m Starting MemberApplicationTests using Java 17.0.4 with PID 26852 (started by YZX in C:\Users\YZX\Desktop\¼òÀú\´ó³§ÏîÄ¿\mytrain\member)
+2023-06-30 11:54:32.772 INFO  com.cug.mytrain.MemberApplicationTests            :633  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2023-06-30 11:54:34.373 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=2002f0ee-0a28-39c0-8170-35696b9ee8cc
+2023-06-30 11:54:36.191 INFO  com.cug.mytrain.MemberApplicationTests            :57   [32m                  [0;39m Started MemberApplicationTests in 4.204 seconds (process running for 5.77)
