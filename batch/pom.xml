@@ -29,6 +29,12 @@
             <artifactId>common</artifactId>
         </dependency>
 
+        <!-- 直接从springboot引入quertz框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+
         <!--        开发用-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
