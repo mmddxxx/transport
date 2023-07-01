@@ -28,11 +28,18 @@ public class JobController {
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
 
+    /**
+     * 任务立即开始执行
+     * @param cronJobReq
+     * @return
+     * @throws SchedulerException
+     */
     @RequestMapping(value = "/run")
     public CommonResp<Object> run(@RequestBody CronJobReq cronJobReq) throws SchedulerException {
         String jobClassName = cronJobReq.getName();
         String jobGroupName = cronJobReq.getGroup();
         LOG.info("手动执行任务开始：{}, {}", jobClassName, jobGroupName);
+        //直接用触发器触发任务
         schedulerFactoryBean.getScheduler().triggerJob(JobKey.jobKey(jobClassName, jobGroupName));
         return new CommonResp<>();
     }
