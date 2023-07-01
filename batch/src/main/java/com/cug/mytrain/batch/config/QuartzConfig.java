@@ -1,36 +1,36 @@
-package com.cug.mytrain.batch.config;
+//package com.cug.mytrain.batch.config;
+////
+// import com.cug.mytrain.batch.job.TestJob;
+// import org.quartz.*;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
 //
- import com.cug.mytrain.batch.job.TestJob;
- import org.quartz.*;
- import org.springframework.context.annotation.Bean;
- import org.springframework.context.annotation.Configuration;
-
- @Configuration
- public class QuartzConfig {
-
-     /**
-      * 声明一个任务
-      * @return
-      */
-     @Bean
-     public JobDetail jobDetail() {
-         return JobBuilder.newJob(TestJob.class)
-                 .withIdentity("TestJob", "test")
-                 .storeDurably()
-                 .build();
-     }
-
-     /**
-      * 声明一个触发器，什么时候触发这个任务
-      * @return
-      */
-     @Bean
-     public Trigger trigger() {
-         return TriggerBuilder.newTrigger()
-                 .forJob(jobDetail())
-                 .withIdentity("trigger", "trigger")
-                 .startNow()
-                 .withSchedule(CronScheduleBuilder.cronSchedule("*/2 * * * * ?"))  //这个星号表示任何余数都可以，以启动时间为基准
-                 .build();
-     }
- }
+// @Configuration
+// public class QuartzConfig {
+//
+//     /**
+//      * 声明一个任务
+//      * @return
+//      */
+//     @Bean
+//     public JobDetail jobDetail() {
+//         return JobBuilder.newJob(TestJob.class)
+//                 .withIdentity("TestJob", "test")
+//                 .storeDurably()
+//                 .build();
+//     }
+//
+//     /**
+//      * 声明一个触发器，什么时候触发这个任务
+//      * @return
+//      */
+//     @Bean
+//     public Trigger trigger() {
+//         return TriggerBuilder.newTrigger()
+//                 .forJob(jobDetail())
+//                 .withIdentity("trigger", "trigger")
+//                 .startNow()
+//                 .withSchedule(CronScheduleBuilder.cronSchedule("*/2 * * * * ?"))  //这个星号表示任何余数都可以，以启动时间为基准
+//                 .build();
+//     }
+// }
