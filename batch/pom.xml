@@ -35,6 +35,17 @@
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
+        <!--远程调用openfeign，openfeign是springcloud自己包装的，增加了SpringMVC注解，让写代码看起来像在写controller-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--openfeign默认使用的是loadBalance的负载均衡器  -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
+
         <!--        开发用-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
