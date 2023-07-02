@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
 /**
  * Hello world!
  *
  */
+@ComponentScan("com.cug")  //这个很关键，有的component可能会识别不到，加上这个强制全文件夹识别，
 @SpringBootApplication
 public class BusinessApplication {
 
