@@ -13,7 +13,7 @@ import org.quartz.JobExecutionException;
 import java.util.Date;
 
 @DisallowConcurrentExecution
-public class TestJob implements Job {
+public class TestJob4 implements Job {
 
     @Resource
     BusinessFeign businessFeign;

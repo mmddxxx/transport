@@ -28,18 +28,11 @@ public class JobController {
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
 
-    /**
-     * 任务立即开始执行
-     * @param cronJobReq
-     * @return
-     * @throws SchedulerException
-     */
     @RequestMapping(value = "/run")
     public CommonResp<Object> run(@RequestBody CronJobReq cronJobReq) throws SchedulerException {
         String jobClassName = cronJobReq.getName();
         String jobGroupName = cronJobReq.getGroup();
         LOG.info("手动执行任务开始：{}, {}", jobClassName, jobGroupName);
-        //直接用触发器触发任务
         schedulerFactoryBean.getScheduler().triggerJob(JobKey.jobKey(jobClassName, jobGroupName));
         return new CommonResp<>();
     }
@@ -84,11 +77,6 @@ public class JobController {
         return commonResp;
     }
 
-    /**
-     * 暂停
-     * @param cronJobReq
-     * @return
-     */
     @RequestMapping(value = "/pause")
     public CommonResp pause(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -107,11 +95,6 @@ public class JobController {
         return commonResp;
     }
 
-    /**
-     * 重启
-     * @param cronJobReq
-     * @return
-     */
     @RequestMapping(value = "/resume")
     public CommonResp resume(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -130,11 +113,6 @@ public class JobController {
         return commonResp;
     }
 
-    /**
-     * 重置(与重启有区别，可以对任务做一些修改)
-     * @param cronJobReq
-     * @return
-     */
     @RequestMapping(value = "/reschedule")
     public CommonResp reschedule(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -166,11 +144,6 @@ public class JobController {
         return commonResp;
     }
 
-    /**
-     * 删除
-     * @param cronJobReq
-     * @return
-     */
     @RequestMapping(value = "/delete")
     public CommonResp delete(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -191,10 +164,6 @@ public class JobController {
         return commonResp;
     }
 
-    /**
-     * 查询
-     * @return
-     */
     @RequestMapping(value="/query")
     public CommonResp query() {
         LOG.info("查看所有定时任务开始");

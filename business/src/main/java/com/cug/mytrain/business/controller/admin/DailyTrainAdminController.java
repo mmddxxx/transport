@@ -1,15 +1,17 @@
 package com.cug.mytrain.business.controller.admin;
 
-import com.cug.mytrain.context.LoginMemberContext;
-import com.cug.mytrain.resp.CommonResp;
-import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.business.req.DailyTrainQueryReq;
 import com.cug.mytrain.business.req.DailyTrainSaveReq;
 import com.cug.mytrain.business.resp.DailyTrainQueryResp;
 import com.cug.mytrain.business.service.DailyTrainService;
+import com.cug.mytrain.resp.CommonResp;
+import com.cug.mytrain.resp.PageResp;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/admin/daily-train")
@@ -36,4 +38,11 @@ public class DailyTrainAdminController {
         return new CommonResp<>();
     }
 
+
+    //@DateTimeFormat注解可以自动将String格式日期转为Date格式
+    @GetMapping("/gen-daily/{date}")
+    public CommonResp<Object> genDaily(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        dailyTrainService.genDaily(date);
+        return new CommonResp<>();
+    }
 }

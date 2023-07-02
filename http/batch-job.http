@@ -2,10 +2,10 @@ POST http://localhost:8000/batch/admin/job/add
 Content-Type: application/json
 
 {
-  "name": "com.cug.mytrain.batch.job.TestJob",
-  "jobGroupName": "default",
-  "cronExpression": "*/2 * * * * ?",
-  "desc": "test job"
+  "name": "com.cug.mytrain.batch.job.TestJob4",
+  "group": "default",
+  "cronExpression": "*/10 * * * * ?",
+  "description": "test job"
 }
 
 ###
@@ -60,8 +60,8 @@ POST http://localhost:8000/batch/admin/job/run
 Content-Type: application/json
 
 {
-"name": "com.cug.mytrain.batch.job.DailyTrainJob",
-"jobGroupName": "default"
+"name": "com.cug.mytrain.batch.job.TestJob4",
+  "group": "default"
 }
 
 
