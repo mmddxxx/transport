@@ -4,21 +4,22 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
-import com.cug.mytrain.business.domain.Train;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.cug.mytrain.resp.PageResp;
-import com.cug.mytrain.util.SnowUtil;
 import com.cug.mytrain.business.domain.DailyTrain;
 import com.cug.mytrain.business.domain.DailyTrainExample;
+import com.cug.mytrain.business.domain.Train;
 import com.cug.mytrain.business.mapper.DailyTrainMapper;
 import com.cug.mytrain.business.req.DailyTrainQueryReq;
 import com.cug.mytrain.business.req.DailyTrainSaveReq;
 import com.cug.mytrain.business.resp.DailyTrainQueryResp;
+import com.cug.mytrain.resp.PageResp;
+import com.cug.mytrain.util.SnowUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,9 @@ public class DailyTrainService {
 
     @Resource
     private DailyTrainSeatService dailyTrainSeatService;
+
+    @Resource
+    private DailyTrainTicketService dailyTrainTicketService;
 
     public void save(DailyTrainSaveReq req) {
         DateTime now = DateTime.now();
@@ -104,7 +108,9 @@ public class DailyTrainService {
         }
     }
 
-    private void genDailyTrain(Date date, Train train) {
+    //事务的传递性，只要外层有个注解，能成功就行
+    @Transactional
+    public void genDailyTrain(Date date, Train train) {
 
         //删除该车次已有数据
         DailyTrainExample dailyTrainExample = new DailyTrainExample();
@@ -128,6 +134,9 @@ public class DailyTrainService {
 
         //生成该车次座位数据
         dailyTrainSeatService.genDaily(date, train.getCode());
+
+        //生成该车次余票数据
+        dailyTrainTicketService.genDaily(dailyTrain, date, train.getCode());
 
     }
 }
