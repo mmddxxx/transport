@@ -29,6 +29,7 @@ public class PassengerService {
     @Resource
     private PassengerMapper passengerMapper;
 
+    //可以加个校验，超过50不让新增
     public void save(PassengerSaveReq passengerSaveReq) {
         DateTime now = DateTime.now();
         Passenger passenger = BeanUtil.copyProperties(passengerSaveReq, Passenger.class);
@@ -75,4 +76,17 @@ public class PassengerService {
     public void delete(Long id) {
         passengerMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * 查询我的所有乘客
+     */
+    public List<PassengerQueryResp> queryMine() {
+        PassengerExample passengerExample = new PassengerExample();
+        passengerExample.setOrderByClause("name asc");
+        PassengerExample.Criteria criteria = passengerExample.createCriteria();
+        criteria.andMemberIdEqualTo(LoginMemberContext.getId());
+        List<Passenger> list = passengerMapper.selectByExample(passengerExample);
+        return BeanUtil.copyToList(list, PassengerQueryResp.class);
+    }
+
 }
