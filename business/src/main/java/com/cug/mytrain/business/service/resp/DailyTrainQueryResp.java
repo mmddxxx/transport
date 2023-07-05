@@ -1,23 +1,17 @@
-package com.cug.mytrain.business.resp;
+package com.cug.mytrain.business.service.resp;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class ConfirmOrderQueryResp {
+public class DailyTrainQueryResp {
 
     /**
      * id
      */
     @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
-
-    /**
-     * 会员id
-     */
-    @JsonSerialize(using= ToStringSerializer.class)
-    private Long memberId;
 
     /**
      * 日期
@@ -28,33 +22,44 @@ public class ConfirmOrderQueryResp {
     /**
      * 车次编号
      */
-    private String trainCode;
+    private String code;
 
     /**
-     * 出发站
+     * 车次类型|枚举[TrainTypeEnum]
+     */
+    private String type;
+
+    /**
+     * 始发站
      */
     private String start;
 
     /**
-     * 到达站
+     * 始发站拼音
+     */
+    private String startPinyin;
+
+    /**
+     * 出发时间
+     */
+    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
+    private Date startTime;
+
+    /**
+     * 终点站
      */
     private String end;
 
     /**
-     * 余票ID
+     * 终点站拼音
      */
-    @JsonSerialize(using= ToStringSerializer.class)
-    private Long dailyTrainTicketId;
+    private String endPinyin;
 
     /**
-     * 车票
+     * 到站时间
      */
-    private String tickets;
-
-    /**
-     * 订单状态|枚举[ConfirmOrderStatusEnum]
-     */
-    private String status;
+    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
+    private Date endTime;
 
     /**
      * 新增时间
@@ -76,14 +81,6 @@ public class ConfirmOrderQueryResp {
         this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -92,12 +89,20 @@ public class ConfirmOrderQueryResp {
         this.date = date;
     }
 
-    public String getTrainCode() {
-        return trainCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setTrainCode(String trainCode) {
-        this.trainCode = trainCode;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getStart() {
@@ -108,6 +113,22 @@ public class ConfirmOrderQueryResp {
         this.start = start;
     }
 
+    public String getStartPinyin() {
+        return startPinyin;
+    }
+
+    public void setStartPinyin(String startPinyin) {
+        this.startPinyin = startPinyin;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
     public String getEnd() {
         return end;
     }
@@ -116,28 +137,20 @@ public class ConfirmOrderQueryResp {
         this.end = end;
     }
 
-    public Long getDailyTrainTicketId() {
-        return dailyTrainTicketId;
+    public String getEndPinyin() {
+        return endPinyin;
     }
 
-    public void setDailyTrainTicketId(Long dailyTrainTicketId) {
-        this.dailyTrainTicketId = dailyTrainTicketId;
+    public void setEndPinyin(String endPinyin) {
+        this.endPinyin = endPinyin;
     }
 
-    public String getTickets() {
-        return tickets;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setTickets(String tickets) {
-        this.tickets = tickets;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Date getCreateTime() {
@@ -163,14 +176,15 @@ public class ConfirmOrderQueryResp {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", memberId=").append(memberId);
         sb.append(", date=").append(date);
-        sb.append(", trainCode=").append(trainCode);
+        sb.append(", code=").append(code);
+        sb.append(", type=").append(type);
         sb.append(", start=").append(start);
+        sb.append(", startPinyin=").append(startPinyin);
+        sb.append(", startTime=").append(startTime);
         sb.append(", end=").append(end);
-        sb.append(", dailyTrainTicketId=").append(dailyTrainTicketId);
-        sb.append(", tickets=").append(tickets);
-        sb.append(", status=").append(status);
+        sb.append(", endPinyin=").append(endPinyin);
+        sb.append(", endTime=").append(endTime);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

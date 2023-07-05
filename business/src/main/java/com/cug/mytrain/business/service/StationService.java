@@ -15,7 +15,7 @@ import com.cug.mytrain.business.domain.StationExample;
 import com.cug.mytrain.business.mapper.StationMapper;
 import com.cug.mytrain.business.req.StationQueryReq;
 import com.cug.mytrain.business.req.StationSaveReq;
-import com.cug.mytrain.business.resp.StationQueryResp;
+import com.cug.mytrain.business.service.resp.StationQueryResp;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
 package com.cug.mytrain.business.controller;
 
 import com.cug.mytrain.business.req.DailyTrainTicketQueryReq;
-import com.cug.mytrain.business.resp.DailyTrainTicketQueryResp;
+import com.cug.mytrain.business.service.resp.DailyTrainTicketQueryResp;
 import com.cug.mytrain.business.service.DailyTrainTicketService;
 import com.cug.mytrain.resp.CommonResp;
 import com.cug.mytrain.resp.PageResp;

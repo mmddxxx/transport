@@ -1,11 +1,11 @@
-package com.cug.mytrain.business.resp;
+package com.cug.mytrain.business.service.resp;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class TrainSeatQueryResp {
+public class TrainCarriageQueryResp {
 
     /**
      * id
@@ -19,19 +19,9 @@ public class TrainSeatQueryResp {
     private String trainCode;
 
     /**
-     * 厢序
+     * 厢号
      */
-    private Integer carriageIndex;
-
-    /**
-     * 排号|01, 02
-     */
-    private String row;
-
-    /**
-     * 列号|枚举[SeatColEnum]
-     */
-    private String col;
+    private Integer index;
 
     /**
      * 座位类型|枚举[SeatTypeEnum]
@@ -39,9 +29,19 @@ public class TrainSeatQueryResp {
     private String seatType;
 
     /**
-     * 同车厢座序
+     * 座位数
      */
-    private Integer carriageSeatIndex;
+    private Integer seatCount;
+
+    /**
+     * 排数
+     */
+    private Integer rowCount;
+
+    /**
+     * 列数
+     */
+    private Integer colCount;
 
     /**
      * 新增时间
@@ -71,28 +71,12 @@ public class TrainSeatQueryResp {
         this.trainCode = trainCode;
     }
 
-    public Integer getCarriageIndex() {
-        return carriageIndex;
+    public Integer getIndex() {
+        return index;
     }
 
-    public void setCarriageIndex(Integer carriageIndex) {
-        this.carriageIndex = carriageIndex;
-    }
-
-    public String getRow() {
-        return row;
-    }
-
-    public void setRow(String row) {
-        this.row = row;
-    }
-
-    public String getCol() {
-        return col;
-    }
-
-    public void setCol(String col) {
-        this.col = col;
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public String getSeatType() {
@@ -103,12 +87,28 @@ public class TrainSeatQueryResp {
         this.seatType = seatType;
     }
 
-    public Integer getCarriageSeatIndex() {
-        return carriageSeatIndex;
+    public Integer getSeatCount() {
+        return seatCount;
     }
 
-    public void setCarriageSeatIndex(Integer carriageSeatIndex) {
-        this.carriageSeatIndex = carriageSeatIndex;
+    public void setSeatCount(Integer seatCount) {
+        this.seatCount = seatCount;
+    }
+
+    public Integer getRowCount() {
+        return rowCount;
+    }
+
+    public void setRowCount(Integer rowCount) {
+        this.rowCount = rowCount;
+    }
+
+    public Integer getColCount() {
+        return colCount;
+    }
+
+    public void setColCount(Integer colCount) {
+        this.colCount = colCount;
     }
 
     public Date getCreateTime() {
@@ -135,11 +135,11 @@ public class TrainSeatQueryResp {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", trainCode=").append(trainCode);
-        sb.append(", carriageIndex=").append(carriageIndex);
-        sb.append(", row=").append(row);
-        sb.append(", col=").append(col);
+        sb.append(", index=").append(index);
         sb.append(", seatType=").append(seatType);
-        sb.append(", carriageSeatIndex=").append(carriageSeatIndex);
+        sb.append(", seatCount=").append(seatCount);
+        sb.append(", rowCount=").append(rowCount);
+        sb.append(", colCount=").append(colCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

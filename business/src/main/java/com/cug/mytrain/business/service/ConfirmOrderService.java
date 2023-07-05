@@ -16,7 +16,7 @@ import com.cug.mytrain.business.mapper.ConfirmOrderMapper;
 import com.cug.mytrain.business.req.ConfirmOrderDoReq;
 import com.cug.mytrain.business.req.ConfirmOrderQueryReq;
 import com.cug.mytrain.business.req.ConfirmOrderTicketReq;
-import com.cug.mytrain.business.resp.ConfirmOrderQueryResp;
+import com.cug.mytrain.business.service.resp.ConfirmOrderQueryResp;
 import com.cug.mytrain.context.LoginMemberContext;
 import com.cug.mytrain.exception.BusinessException;
 import com.cug.mytrain.exception.BusinessExceptionEnum;

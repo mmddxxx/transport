@@ -1,7 +1,7 @@
 package com.cug.mytrain.business.controller;
 
 import com.cug.mytrain.business.req.TrainQueryReq;
-import com.cug.mytrain.business.resp.TrainQueryResp;
+import com.cug.mytrain.business.service.resp.TrainQueryResp;
 import com.cug.mytrain.business.service.TrainService;
 import com.cug.mytrain.resp.CommonResp;
 import com.cug.mytrain.resp.PageResp;

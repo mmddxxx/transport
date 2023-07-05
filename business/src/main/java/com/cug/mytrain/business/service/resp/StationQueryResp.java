@@ -1,28 +1,17 @@
-package com.cug.mytrain.business.resp;
+package com.cug.mytrain.business.service.resp;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.math.BigDecimal;
 
-public class TrainStationQueryResp {
+public class StationQueryResp {
 
     /**
      * id
      */
     @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
-
-    /**
-     * 车次编号
-     */
-    private String trainCode;
-
-    /**
-     * 站序
-     */
-    private Integer index;
 
     /**
      * 站名
@@ -35,27 +24,9 @@ public class TrainStationQueryResp {
     private String namePinyin;
 
     /**
-     * 进站时间
+     * 站名拼音首字母
      */
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date inTime;
-
-    /**
-     * 出站时间
-     */
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date outTime;
-
-    /**
-     * 停站时长
-     */
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date stopTime;
-
-    /**
-     * 里程（公里）|从上一站到本站的距离
-     */
-    private BigDecimal km;
+    private String namePy;
 
     /**
      * 新增时间
@@ -77,22 +48,6 @@ public class TrainStationQueryResp {
         this.id = id;
     }
 
-    public String getTrainCode() {
-        return trainCode;
-    }
-
-    public void setTrainCode(String trainCode) {
-        this.trainCode = trainCode;
-    }
-
-    public Integer getIndex() {
-        return index;
-    }
-
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
-
     public String getName() {
         return name;
     }
@@ -109,36 +64,12 @@ public class TrainStationQueryResp {
         this.namePinyin = namePinyin;
     }
 
-    public Date getInTime() {
-        return inTime;
+    public String getNamePy() {
+        return namePy;
     }
 
-    public void setInTime(Date inTime) {
-        this.inTime = inTime;
-    }
-
-    public Date getOutTime() {
-        return outTime;
-    }
-
-    public void setOutTime(Date outTime) {
-        this.outTime = outTime;
-    }
-
-    public Date getStopTime() {
-        return stopTime;
-    }
-
-    public void setStopTime(Date stopTime) {
-        this.stopTime = stopTime;
-    }
-
-    public BigDecimal getKm() {
-        return km;
-    }
-
-    public void setKm(BigDecimal km) {
-        this.km = km;
+    public void setNamePy(String namePy) {
+        this.namePy = namePy;
     }
 
     public Date getCreateTime() {
@@ -164,14 +95,9 @@ public class TrainStationQueryResp {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", trainCode=").append(trainCode);
-        sb.append(", index=").append(index);
         sb.append(", name=").append(name);
         sb.append(", namePinyin=").append(namePinyin);
-        sb.append(", inTime=").append(inTime);
-        sb.append(", outTime=").append(outTime);
-        sb.append(", stopTime=").append(stopTime);
-        sb.append(", km=").append(km);
+        sb.append(", namePy=").append(namePy);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

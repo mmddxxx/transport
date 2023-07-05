@@ -1,11 +1,10 @@
 package com.cug.mytrain.business.controller;
 
-import com.cug.mytrain.context.LoginMemberContext;
 import com.cug.mytrain.resp.CommonResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.business.req.TrainCarriageQueryReq;
 import com.cug.mytrain.business.req.TrainCarriageSaveReq;
-import com.cug.mytrain.business.resp.TrainCarriageQueryResp;
+import com.cug.mytrain.business.service.resp.TrainCarriageQueryResp;
 import com.cug.mytrain.business.service.TrainCarriageService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;

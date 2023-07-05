@@ -1,4 +1,4 @@
-package com.cug.mytrain.business.resp;
+package com.cug.mytrain.business.service.resp;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;

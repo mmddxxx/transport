@@ -1,11 +1,10 @@
 package com.cug.mytrain.business.controller.admin;
 
-import com.cug.mytrain.context.LoginMemberContext;
 import com.cug.mytrain.resp.CommonResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.business.req.DailyTrainTicketQueryReq;
 import com.cug.mytrain.business.req.DailyTrainTicketSaveReq;
-import com.cug.mytrain.business.resp.DailyTrainTicketQueryResp;
+import com.cug.mytrain.business.service.resp.DailyTrainTicketQueryResp;
 import com.cug.mytrain.business.service.DailyTrainTicketService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -27,6 +26,12 @@ public class DailyTrainTicketAdminController {
     @GetMapping("/query-list")
     public CommonResp<PageResp<DailyTrainTicketQueryResp>> queryList(@Valid DailyTrainTicketQueryReq req) {
         PageResp<DailyTrainTicketQueryResp> list = dailyTrainTicketService.queryList(req);
+        return new CommonResp<>(list);
+    }
+
+    @GetMapping("/query-list2")
+    public CommonResp<PageResp<DailyTrainTicketQueryResp>> queryList2(@Valid DailyTrainTicketQueryReq req) {
+        PageResp<DailyTrainTicketQueryResp> list = dailyTrainTicketService.queryList2(req);
         return new CommonResp<>(list);
     }
 

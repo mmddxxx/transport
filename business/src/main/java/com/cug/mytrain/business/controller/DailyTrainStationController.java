@@ -1,7 +1,7 @@
 package com.cug.mytrain.business.controller;
 
 import com.cug.mytrain.business.req.DailyTrainStationQueryAllReq;
-import com.cug.mytrain.business.resp.DailyTrainStationQueryResp;
+import com.cug.mytrain.business.service.resp.DailyTrainStationQueryResp;
 import com.cug.mytrain.business.service.DailyTrainStationService;
 import com.cug.mytrain.resp.CommonResp;
 import jakarta.validation.Valid;

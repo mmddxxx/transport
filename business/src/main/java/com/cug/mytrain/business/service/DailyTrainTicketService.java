@@ -16,7 +16,7 @@ import com.cug.mytrain.business.enums.TrainTypeEnum;
 import com.cug.mytrain.business.mapper.DailyTrainTicketMapper;
 import com.cug.mytrain.business.req.DailyTrainTicketQueryReq;
 import com.cug.mytrain.business.req.DailyTrainTicketSaveReq;
-import com.cug.mytrain.business.resp.DailyTrainTicketQueryResp;
+import com.cug.mytrain.business.service.resp.DailyTrainTicketQueryResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.util.SnowUtil;
 import com.github.pagehelper.PageHelper;
@@ -24,6 +24,8 @@ import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +62,14 @@ public class DailyTrainTicketService {
         }
     }
 
+    //执行这个时会将查询结果强制刷新到缓存中
+    @CachePut(value = "DailyTrainTicketService")
+    public PageResp<DailyTrainTicketQueryResp> queryList2(DailyTrainTicketQueryReq req) {
+        return queryList(req);
+    }
+
+        //开辟一块空间，根据不同的请求参数，空间会缓存多个结果，会根据请求参数生成一个key，需要对请求参数生成hashCode和equals方法，用于生成key
+    @Cacheable(value = "DailyTrainTicketService")
     public PageResp<DailyTrainTicketQueryResp> queryList(DailyTrainTicketQueryReq req) {
         DailyTrainTicketExample dailyTrainTicketExample = new DailyTrainTicketExample();
         dailyTrainTicketExample.setOrderByClause("`date` desc, start_time asc, train_code asc, `start_index` asc, `end_index` asc");

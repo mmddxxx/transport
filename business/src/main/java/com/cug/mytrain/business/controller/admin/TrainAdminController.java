@@ -2,7 +2,7 @@ package com.cug.mytrain.business.controller.admin;
 
 import com.cug.mytrain.business.req.TrainQueryReq;
 import com.cug.mytrain.business.req.TrainSaveReq;
-import com.cug.mytrain.business.resp.TrainQueryResp;
+import com.cug.mytrain.business.service.resp.TrainQueryResp;
 import com.cug.mytrain.business.service.TrainSeatService;
 import com.cug.mytrain.business.service.TrainService;
 import com.cug.mytrain.resp.CommonResp;

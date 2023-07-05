@@ -10,7 +10,7 @@ import com.cug.mytrain.business.domain.Train;
 import com.cug.mytrain.business.mapper.DailyTrainMapper;
 import com.cug.mytrain.business.req.DailyTrainQueryReq;
 import com.cug.mytrain.business.req.DailyTrainSaveReq;
-import com.cug.mytrain.business.resp.DailyTrainQueryResp;
+import com.cug.mytrain.business.service.resp.DailyTrainQueryResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.util.SnowUtil;
 import com.github.pagehelper.PageHelper;

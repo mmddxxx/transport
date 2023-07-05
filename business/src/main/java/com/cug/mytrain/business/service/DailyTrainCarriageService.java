@@ -13,7 +13,7 @@ import com.cug.mytrain.business.enums.SeatColEnum;
 import com.cug.mytrain.business.mapper.DailyTrainCarriageMapper;
 import com.cug.mytrain.business.req.DailyTrainCarriageQueryReq;
 import com.cug.mytrain.business.req.DailyTrainCarriageSaveReq;
-import com.cug.mytrain.business.resp.DailyTrainCarriageQueryResp;
+import com.cug.mytrain.business.service.resp.DailyTrainCarriageQueryResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.util.SnowUtil;
 import com.github.pagehelper.PageHelper;

@@ -9,7 +9,7 @@ import com.cug.mytrain.business.domain.TrainExample;
 import com.cug.mytrain.business.mapper.TrainMapper;
 import com.cug.mytrain.business.req.TrainQueryReq;
 import com.cug.mytrain.business.req.TrainSaveReq;
-import com.cug.mytrain.business.resp.TrainQueryResp;
+import com.cug.mytrain.business.service.resp.TrainQueryResp;
 import com.cug.mytrain.exception.BusinessException;
 import com.cug.mytrain.exception.BusinessExceptionEnum;
 import com.cug.mytrain.resp.PageResp;

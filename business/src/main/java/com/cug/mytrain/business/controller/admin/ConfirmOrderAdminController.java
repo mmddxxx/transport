@@ -4,7 +4,7 @@ import com.cug.mytrain.resp.CommonResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.business.req.ConfirmOrderQueryReq;
 import com.cug.mytrain.business.req.ConfirmOrderDoReq;
-import com.cug.mytrain.business.resp.ConfirmOrderQueryResp;
+import com.cug.mytrain.business.service.resp.ConfirmOrderQueryResp;
 import com.cug.mytrain.business.service.ConfirmOrderService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;

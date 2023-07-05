@@ -1,11 +1,11 @@
-package com.cug.mytrain.business.resp;
+package com.cug.mytrain.business.service.resp;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class TrainCarriageQueryResp {
+public class DailyTrainCarriageQueryResp {
 
     /**
      * id
@@ -14,12 +14,18 @@ public class TrainCarriageQueryResp {
     private Long id;
 
     /**
+     * 日期
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    private Date date;
+
+    /**
      * 车次编号
      */
     private String trainCode;
 
     /**
-     * 厢号
+     * 箱序
      */
     private Integer index;
 
@@ -61,6 +67,14 @@ public class TrainCarriageQueryResp {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getTrainCode() {
@@ -134,6 +148,7 @@ public class TrainCarriageQueryResp {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", date=").append(date);
         sb.append(", trainCode=").append(trainCode);
         sb.append(", index=").append(index);
         sb.append(", seatType=").append(seatType);

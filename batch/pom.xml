@@ -75,7 +75,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                 </plugin>
 
-                <!-- 配置当前项目的jdk版本信息 -->
+                <!-- 配置当前项目的jdk版本信息，配置后不会出现一直自动切换回8的问题 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>

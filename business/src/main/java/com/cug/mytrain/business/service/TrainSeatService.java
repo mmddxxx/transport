@@ -15,7 +15,7 @@ import com.cug.mytrain.business.domain.TrainSeatExample;
 import com.cug.mytrain.business.mapper.TrainSeatMapper;
 import com.cug.mytrain.business.req.TrainSeatQueryReq;
 import com.cug.mytrain.business.req.TrainSeatSaveReq;
-import com.cug.mytrain.business.resp.TrainSeatQueryResp;
+import com.cug.mytrain.business.service.resp.TrainSeatQueryResp;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
