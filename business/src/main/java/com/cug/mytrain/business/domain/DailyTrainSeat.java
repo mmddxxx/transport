@@ -17,7 +17,7 @@ public class DailyTrainSeat {
 
     private String seatType;
 
-    private Integer carriageSeatIndex;
+    private Integer carriageSeatIndex;  //从1开始
 
     private String sell;
 
