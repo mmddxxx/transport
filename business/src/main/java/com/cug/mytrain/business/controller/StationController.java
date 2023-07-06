@@ -1,6 +1,6 @@
 package com.cug.mytrain.business.controller;
 
-import com.cug.mytrain.business.service.resp.StationQueryResp;
+import com.cug.mytrain.business.resp.StationQueryResp;
 import com.cug.mytrain.business.service.StationService;
 import com.cug.mytrain.resp.CommonResp;
 import jakarta.annotation.Resource;

@@ -10,7 +10,7 @@ import com.cug.mytrain.business.enums.SeatColEnum;
 import com.cug.mytrain.business.mapper.TrainCarriageMapper;
 import com.cug.mytrain.business.req.TrainCarriageQueryReq;
 import com.cug.mytrain.business.req.TrainCarriageSaveReq;
-import com.cug.mytrain.business.service.resp.TrainCarriageQueryResp;
+import com.cug.mytrain.business.resp.TrainCarriageQueryResp;
 import com.cug.mytrain.exception.BusinessException;
 import com.cug.mytrain.exception.BusinessExceptionEnum;
 import com.cug.mytrain.resp.PageResp;

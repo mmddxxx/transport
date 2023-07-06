@@ -2,7 +2,7 @@ package com.cug.mytrain.business.controller.admin;
 
 import com.cug.mytrain.business.req.DailyTrainStationQueryReq;
 import com.cug.mytrain.business.req.DailyTrainStationSaveReq;
-import com.cug.mytrain.business.service.resp.DailyTrainStationQueryResp;
+import com.cug.mytrain.business.resp.DailyTrainStationQueryResp;
 import com.cug.mytrain.business.service.DailyTrainStationService;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.resp.CommonResp;

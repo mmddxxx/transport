@@ -13,7 +13,7 @@ import com.cug.mytrain.business.domain.TrainStation;
 import com.cug.mytrain.business.mapper.DailyTrainSeatMapper;
 import com.cug.mytrain.business.req.DailyTrainSeatQueryReq;
 import com.cug.mytrain.business.req.DailyTrainSeatSaveReq;
-import com.cug.mytrain.business.service.resp.DailyTrainSeatQueryResp;
+import com.cug.mytrain.business.resp.DailyTrainSeatQueryResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.util.SnowUtil;
 import com.github.pagehelper.PageHelper;

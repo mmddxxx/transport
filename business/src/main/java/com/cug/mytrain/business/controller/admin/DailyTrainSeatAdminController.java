@@ -4,7 +4,7 @@ import com.cug.mytrain.resp.CommonResp;
 import com.cug.mytrain.resp.PageResp;
 import com.cug.mytrain.business.req.DailyTrainSeatQueryReq;
 import com.cug.mytrain.business.req.DailyTrainSeatSaveReq;
-import com.cug.mytrain.business.service.resp.DailyTrainSeatQueryResp;
+import com.cug.mytrain.business.resp.DailyTrainSeatQueryResp;
 import com.cug.mytrain.business.service.DailyTrainSeatService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;

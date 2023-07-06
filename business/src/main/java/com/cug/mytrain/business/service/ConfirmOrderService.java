@@ -16,7 +16,7 @@ import com.cug.mytrain.business.mapper.ConfirmOrderMapper;
 import com.cug.mytrain.business.req.ConfirmOrderDoReq;
 import com.cug.mytrain.business.req.ConfirmOrderQueryReq;
 import com.cug.mytrain.business.req.ConfirmOrderTicketReq;
-import com.cug.mytrain.business.service.resp.ConfirmOrderQueryResp;
+import com.cug.mytrain.business.resp.ConfirmOrderQueryResp;
 import com.cug.mytrain.context.LoginMemberContext;
 import com.cug.mytrain.exception.BusinessException;
 import com.cug.mytrain.exception.BusinessExceptionEnum;
@@ -27,11 +27,13 @@ import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ConfirmOrderService {
@@ -53,7 +55,11 @@ public class ConfirmOrderService {
     @Resource
     private AfterConfirmOrderService afterConfirmOrderService;
 
+    @Resource
+    private StringRedisTemplate redisTemplate;
+
     public void save(ConfirmOrderDoReq req) {
+
         DateTime now = DateTime.now();
         ConfirmOrder confirmOrder = BeanUtil.copyProperties(req, ConfirmOrder.class);
         if (ObjectUtil.isNull(confirmOrder.getId())) {
@@ -94,8 +100,20 @@ public class ConfirmOrderService {
     }
 
     //校验
-    public void doConfirm(ConfirmOrderDoReq req) {
+    public synchronized void doConfirm(ConfirmOrderDoReq req) {
         // 省略业务数据校验，如：车次是否存在，余票是否存在，车次是否在有效期内，tickets条数>0，同乘客同车次是否已买过
+        String key = req.getDate() + "-" + req.getTrainCode();
+        Boolean setIfAbsent = redisTemplate.opsForValue().setIfAbsent(key, "1", 5, TimeUnit.SECONDS);
+        if (setIfAbsent) {
+            LOG.info("恭喜，抢到锁了！");
+        } else {
+            // 只是没抢到锁，并不知道票抢完了没，所以提示稍候再试
+            // LOG.info("很遗憾，没抢到锁！lockKey：{}", lockKey);
+            // throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_LOCK_FAIL);
+
+            LOG.info("很遗憾，没抢到锁了！");
+            return;
+        }
 
         //保存确认订单表，状态初始
         DateTime now = DateTime.now();
