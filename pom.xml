@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
+        <version>3.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cug</groupId>
@@ -87,6 +87,15 @@ https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+            <!-- 一开始，死找不到依赖，莫名其妙就好了 -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.21.0</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
