@@ -8,6 +8,8 @@ import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.fastjson.JSON;
 import com.cug.mytrain.business.domain.*;
 import com.cug.mytrain.business.enums.ConfirmOrderStatusEnum;
@@ -106,11 +108,12 @@ public class ConfirmOrderService {
     }
 
     //校验
+    @SentinelResource(value = "doConfirm", blockHandler = "doConfirmBlock")
     public void doConfirm(ConfirmOrderDoReq req) {
         // 省略业务数据校验，如：车次是否存在，余票是否存在，车次是否在有效期内，tickets条数>0，同乘客同车次是否已买过
         String lockKey = DateUtil.formatDate(req.getDate()) + "-" + req.getTrainCode();
-
         RLock lock = null;
+
         try {
             lock = redissonClient.getLock(lockKey);
 
@@ -123,7 +126,8 @@ public class ConfirmOrderService {
             //   leaseTime – lease time 锁时长，即n秒后自动释放锁
             //   time unit – time unit 时间单位
 //            boolean tryLock = lock.tryLock(30, 10, TimeUnit.SECONDS); // 不带看门狗
-            boolean tryLock1 = lock.tryLock(3, TimeUnit.SECONDS);  //带看门狗，可以无限期刷新时长，等待0s
+            boolean tryLock1;
+            tryLock1 = lock.tryLock(3, TimeUnit.SECONDS);  //带看门狗，可以无限期刷新时长，等待0s
 
 
             //setifabsent对应的是redis的setNX命令
@@ -133,9 +137,9 @@ public class ConfirmOrderService {
                 LOG.info("恭喜，抢到锁了！");
             } else {
                 // 只是没抢到锁，并不知道票抢完了没，所以提示稍候再试
-                // LOG.info("很遗憾，没抢到锁！lockKey：{}", lockKey);
+//            LOG.info("很遗憾，没抢到锁！lockKey：{}", lockKey);
                 // 这里不抛异常的原因是如果抛异常了,那么会去执行finally,会导致没拿到锁的线程也会去释放锁
-                // throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_LOCK_FAIL);
+//            throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_LOCK_FAIL);
 
                 LOG.info("很遗憾，没抢到锁了！");
                 return;
@@ -406,4 +410,15 @@ public class ConfirmOrderService {
             }
         }
     }
+
+    /**
+     * 降级方法，需包含限流方法的所有参数和BlockException参数
+     * @param req
+     * @param e
+     */
+    public void doConfirmBlock(ConfirmOrderDoReq req, BlockException e) {
+        LOG.info("购票请求被限流：{}", req);
+        throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_FLOW_EXCEPTION);
+    }
+
 }

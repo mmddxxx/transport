@@ -26,6 +26,7 @@ public class MemberInterceptor implements HandlerInterceptor {
         LOG.info("MemberInterceptor开始");
         //获取header的token参数
         String token = request.getHeader("token");
+        //如果请求参数包含token就会走以下判断
         if (StrUtil.isNotBlank(token)) {
             LOG.info("获取会员登录token：{}", token);
             JSONObject loginMember = JwtUtil.getJSONObject(token);
