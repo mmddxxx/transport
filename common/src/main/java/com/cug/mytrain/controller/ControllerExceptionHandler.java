@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 统一异常处理、数据预处理等
  */
+//Advice，在Spring的AOP中，是用来封装一个切面所有属性的，包括切入点和需要织入的切面逻辑。
 @ControllerAdvice
 public class ControllerExceptionHandler {
 

@@ -23,6 +23,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableFeignClients("com.cug.mytrain.business.feign")
 @EnableCaching
+//@MapperScan
 public class BusinessApplication {
 
     private static final Logger LOG = LoggerFactory.getLogger(BusinessApplication.class);

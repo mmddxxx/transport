@@ -1,4 +1,4 @@
-GET http://localhost:8000/business/redis/set/123/test1
+GET http://localhost:8000/business/redis/set/123/test2
 Accept: application/json
 
 ###

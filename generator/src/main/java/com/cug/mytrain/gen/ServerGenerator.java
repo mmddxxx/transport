@@ -16,8 +16,8 @@ import java.util.*;
 public class ServerGenerator {
     static boolean readOnly = false;
     static String vuePath = "admin/src/views/main/";
-//    static String serverPath = "[module]/src/main/java/com/cug/mytrain/[module]/";  //[module]是一个变量
-    static String serverPath = "[module]/src/main/java/com/cug/mytrain/";  //[module]是一个变量
+    static String serverPath = "[module]/src/main/java/com/cug/mytrain/[module]/";  //[module]是一个变量
+//    static String serverPath = "[module]/src/main/java/com/cug/mytrain/";  //[module]是一个变量
     static String pomPath = "generator/pom.xml";
     static String module = "";
     // static {
